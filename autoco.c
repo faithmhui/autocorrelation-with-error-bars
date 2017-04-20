@@ -48,11 +48,11 @@ void autoco (int nbin, double bincenter[],double data [],double sdata[], FILE **
       double numer2=2.0*(data[bincount]- mean);  
       double denom=sumdsqr*sumdsqr;
       double combined=(numer1*sumdsqr-numer2*autosum)/denom * sdata[bincount];
-      autosumerr=combined+autosumerr;
+      autosumerr=combined*combined+autosumerr;
   
     }//for
     double autosumresult=autosum/sumdsqr;
-    double autosumresulterr=sqrt(autosumerr*autosumerr);//to make positive the error
+    double autosumresulterr=sqrt(autosumerr);//to make positive the error
    
     fprintf(*pntr,"%d %f %f %f\n",tau,bincenter[tau],autosumresult,autosumresulterr);//print autosumresult and its error
   
